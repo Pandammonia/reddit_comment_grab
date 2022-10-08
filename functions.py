@@ -6,15 +6,7 @@ try:
 except ImportError:
 	pass
 
-def grabusercomments(user):
-	with open(f"{user}.txt", "w") as file:
-		for comment in reddit.redditor(name=user).comments.new(limit=None):
-			try:
-				file.write(comment.body)
-			except UnicodeEncodeError:
-				pass
-
-def grabuserscomments(*users):
+def grabusercomments(*users):
 	for user in users:
 		with open(f"{user}.txt", "w") as file:
 			for comment in reddit.redditor(name=user).comments.new(limit=None):
@@ -22,6 +14,7 @@ def grabuserscomments(*users):
 					file.write(comment.body)
 				except UnicodeEncodeError:
 					pass
+
 
 def wordsplit(file):
 	data = file.read()
